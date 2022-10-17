@@ -3,6 +3,17 @@ import { fireEvent, getByPlaceholderText, render } from '@testing-library/react'
 import TodoForm from './TodoForm';
 
 describe('<TodoForm/>', () => {
+    const setup = (props ={}) =>{
+        const utils = render(<TodoForm{...props}/>);
+        const {getByText, getByPlaceholderText} = utils;
+        const input = getByPlaceholderText('할 일을 입력하세요');
+        const button = getByText('등록');
+        return{
+            ...utils,
+            input,
+            button,
+        };
+    };
     it('ha input and button', () =>{
         const {getByText, getByPlaceholderText } = render(<TodoForm/>);
         getByPlaceholderText('할 일을 입력하세요');//인풋이 있는지 확인
